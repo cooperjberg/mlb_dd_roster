@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+streamlit
+pybaseball
+gspread
+oauth2client
+requests
+beautifulsoup4
