@@ -33,3 +33,18 @@ if player_name:
             st.dataframe(matching.head(1))
         else:
             st.warning("Player not found in ShowZone sample data.")
+from utils.model_trainer import predict_new_ovr
+
+# --- PREDICTED OVR SECTION ---
+if not stats.empty and not matching.empty:
+    mlb_row = stats.iloc[0].to_dict()
+    sz_row = matching.iloc[0].to_dict()
+
+    new_ovr = predict_new_ovr(
+        current_ovr=int(sz_row["overall"]),
+        mlb_stats=mlb_row,
+        showzone_attrs=sz_row
+    )
+
+    st.subheader("🔮 Predicted New OVR")
+    st.metric(label="Predicted OVR", value=new_ovr, delta=new_ovr - int(sz_row["overall"]))
