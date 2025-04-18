@@ -15,13 +15,14 @@ player_name = st.text_input("Enter a player name:")
 if player_name:
     st.subheader("Live MLB Stats")
     stats = find_player_stats(player_name)
+
     if stats.empty:
         st.error("Player not found. Try another name.")
     else:
         st.dataframe(stats)
 
     # SHOWZONE STATS
-      st.subheader("ShowZone Live OVR")
+    st.subheader("ShowZone Live OVR")
     sz_data = get_showzone_player_data()
 
     if sz_data.empty or "name" not in sz_data.columns:
@@ -32,4 +33,3 @@ if player_name:
             st.dataframe(matching.head(1))
         else:
             st.warning("Player not found in ShowZone sample data.")
-
