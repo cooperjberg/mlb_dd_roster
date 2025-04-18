@@ -15,4 +15,15 @@ if player_name:
         st.error("Player not found. Try another name.")
     else:
         st.dataframe(stats)
+from utils.showzone_scraper import get_showzone_player_data
+
+st.subheader("ShowZone Live OVR")
+
+if player_name:
+    sz_data = get_showzone_player_data()
+    matching = sz_data[sz_data['name'].str.contains(player_name, case=False)]
+    if not matching.empty:
+        st.dataframe(matching.head(1))
+    else:
+        st.warning("Player not found on ShowZone.")
 
