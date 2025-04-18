@@ -21,9 +21,11 @@ st.subheader("ShowZone Live OVR")
 
 if player_name:
     sz_data = get_showzone_player_data()
-    matching = sz_data[sz_data['name'].str.contains(player_name, case=False)]
-    if not matching.empty:
-        st.dataframe(matching.head(1))
+    if sz_data.empty or "name" not in sz_data.columns:
+        st.error("Failed to load ShowZone data. Please try again later.")
     else:
-        st.warning("Player not found on ShowZone.")
-
+        matching = sz_data[sz_data['name'].str.contains(player_name, case=False)]
+        if not matching.empty:
+            st.dataframe(matching.head(1))
+        else:
+            st.warning("Player not found on ShowZone.")
