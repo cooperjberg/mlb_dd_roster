@@ -21,7 +21,7 @@ if player_name:
         st.dataframe(stats)
 
     # SHOWZONE STATS
-    st.subheader("ShowZone Live OVR")
+      st.subheader("ShowZone Live OVR")
     sz_data = get_showzone_player_data()
 
     if sz_data.empty or "name" not in sz_data.columns:
@@ -32,3 +32,4 @@ if player_name:
             st.dataframe(matching.head(1))
         else:
             st.warning("Player not found in ShowZone sample data.")
+
