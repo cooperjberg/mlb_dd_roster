@@ -1,10 +1,9 @@
 import pandas as pd
-import os
 
 def get_showzone_player_data():
-    file_path = os.path.join("data", "sample_showzone_data.csv")
-    if os.path.exists(file_path):
-        return pd.read_csv(file_path)
-    else:
-        print("⚠️ CSV not found at expected path.")
+    try:
+        df = pd.read_csv("data/sample_showzone_data.csv")
+        return df
+    except Exception as e:
+        print("❌ Error loading ShowZone CSV:", e)
         return pd.DataFrame()
