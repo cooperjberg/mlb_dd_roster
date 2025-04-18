@@ -28,4 +28,5 @@ if player_name:
         if not matching.empty:
             st.dataframe(matching.head(1))
         else:
-            st.warning("Player not found on ShowZone.")
+            st.warning("Player not found in ShowZone sample data.")
+
